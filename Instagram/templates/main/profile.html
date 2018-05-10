@@ -1,0 +1,12 @@
+{%extends 'main/baseprofile.html'%}
+{% load bootstrap3 %}
+{% load static %}
+{% block styles %}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/profile.css'%}">
+{% endblock %}
+{% block content %}
+<div class="container">
+<h1>Hello</h1>
+</div>
+{%endblock%}
