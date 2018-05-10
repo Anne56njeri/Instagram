@@ -7,3 +7,8 @@ class Profile(models.Model):
     Bio= models.TextField()
     profile_image=models.ImageField(upload_to = 'profiles/',blank=True)
     user=models.ForeignKey(User)
+
+class Image(models.Model):
+    name=models.CharField(max_length=20)
+    image_caption=models.CharField(max_length=1000,blank=True)
+    profile=models.ForeignKey(Profile)
