@@ -6,5 +6,6 @@ class ProfileForm(forms.ModelForm):
         model=Profile
         fields = ['name','Bio','profile_image']
 class ImageForm(forms.ModelForm):
-    model=Image
-    fields = ['name','caption','image_path']
+    class Meta:
+        model=Image
+        fields = ['name','image_caption','image_path']

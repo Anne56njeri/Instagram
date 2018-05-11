@@ -7,7 +7,8 @@ from .models import Profile
 def index(request):
     title='Welcome to instagram'
     profile_info =Profile.objects.all()
-    return render(request,'main/index.html',{"title":title,"profile_info":profile_info})
+    images_prof=Images.objects.all()
+    return render(request,'main/index.html',{"title":title,"profile_info":profile_info,"images_prof":images_prof})
 def first_profile(request):
     current_user=request.user
     user=Profile.objects.get(user_id=current_user)
@@ -30,4 +31,4 @@ def add_image(request):
             form.save()
     else:
         form=ImageForm()
-    return render(request,'main/image.html')
+    return render(request,'main/image.html',{"form":form})

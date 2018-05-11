@@ -7,6 +7,7 @@ urlpatterns=[
 url(r'^$',views.index,name='Index'),
 url(r'^accounts/',include('registration.backends.simple.urls')),
 url(r'^profile/',views.first_profile,name='Profile'),
+url(r'^images/',views.add_image,name='Image'),
 
 ]
 if settings.DEBUG:
