@@ -1,0 +1,27 @@
+{%extends 'main/base.html'%}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block styles %}
+{{ block.super }}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/index.css'%}">
+{% endblock %}
+<div class="container">
+  <div class="row">
+
+    <div class="col-md-8">
+      <img src="{{image_details.image_path.url}}" class="img-responsive" alt="">
+    </div>
+    <div class="col-md-4">
+      <h3 class="text-center">{{image_details.name}}</h3>
+      <p>{{image_details.image_caption}}</p>
+    </div>
+  </div>
+</div>
+
+{% block content %}
+{% block scripts %}
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+       {% bootstrap_javascript %}
+      {% endblock %}
