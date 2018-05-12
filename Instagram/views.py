@@ -26,14 +26,18 @@ def first_profile(request):
 
     return render(request,'main/profile.html',{"form":form})
 def add_image(request):
-    if request.method == 'POST':
+   current_profile=Profile.objects.get(user=request.user)
+   if request.method == 'POST':
         form=ImageForm(request.POST,request.FILES)
         if form.is_valid():
-            form.save()
+            form_details=form.save(commit=False)
+            form_details.profile=current_profile
+            form_details.save()
             return redirect(index)
-    else:
+   else:
         form=ImageForm()
-    return render(request,'main/image.html',{"form":form})
+
+   return render(request,'main/image.html',{"form":form})
 def details(request,image_id):
     try:
         image_details = Image.objects.get(id=image_id)

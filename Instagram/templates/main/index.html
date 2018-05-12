@@ -26,12 +26,16 @@
 <div class="container">
   {% for images in images_prof %}
   <div class="col-xs-4 col-sm-4 col-lg-4">
-  
+
   {% if  images.image_path %}
-  <img src="{{images.image_path.url}}" class="img-thumbnail" >
+
+  <a href="{%url 'Details' images.id %}" class=""><img src="{{images.image_path.url}}" class="img-thumbnail" ></a>
 </div>
+
+
    {% else %}
  </div>
+ 
    <div class="row">
    <h3>You haven't uploaded any images</h3>
  </div>
