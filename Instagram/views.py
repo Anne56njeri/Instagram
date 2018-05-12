@@ -47,3 +47,7 @@ def details(request,image_id):
 def home(request):
     title='Welcome to Instaphoto'
     return render(request,'main/home.html',{"title":title})
+def search_profile(request):
+    search_term=request.GET.get("profile")
+    searched_profiles=Profile.search(search_term)
+    return render (request,'main/search.html',{"searched_profiles":searched_profiles})

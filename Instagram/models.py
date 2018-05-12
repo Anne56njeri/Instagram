@@ -10,10 +10,15 @@ class Profile(models.Model):
     profile_image=models.ImageField(upload_to = 'profiles/',blank=True)
     user=models.ForeignKey(User)
     account_images=models.ManyToManyField('Image',related_name='image')
+
     def save_profile(self):
         self.save()
     def delete_profile(self):
         self.delete()
+    @classmethod    
+    def search(cls,search_term):
+        profiles=cls.objects.filter(name__icontains=search_term)
+        return profiles
 
 #one image can belong to various profiles
 class Image(models.Model):
