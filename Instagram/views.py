@@ -44,3 +44,6 @@ def details(request,image_id):
     except DoesNotExsist:
         raise Http404()
     return render(request,'main/details.html',{"image_details":image_details})
+def home(request):
+    title='Welcome to Instaphoto'
+    return render(request,'main/home.html',{"title":title})

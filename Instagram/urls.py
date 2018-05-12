@@ -9,6 +9,7 @@ url(r'^accounts/',include('registration.backends.simple.urls')),
 url(r'^profile/',views.first_profile,name='Profile'),
 url(r'^images/',views.add_image,name='Image'),
 url(r'^details/(\d+)',views.details,name='Details'),
+url(r'^instaphoto/',views.home,name='Home',)
 
 ]
 if settings.DEBUG:
