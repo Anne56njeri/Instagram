@@ -1,30 +1,48 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from .forms import ProfileForm,ImageForm
+from .forms import ProfileForm,ImageForm,SignUpForm,UserForm
 from .models import Profile,Image
 from django.http import Http404
+from django.contrib.auth.forms import UserCreationForm
+from django.db import transaction
+from django.contrib.auth import login,authenticate
 # Create your views here.
+def signup(request):
+    if request.method == 'POST':
+        form=SignUpForm(request.POST,request.FILES)
+        if form.is_valid():
+            user=form.save()
+            user.refresh_from_db()
+            user.profile.name=form.cleaned_data.get('name')
+            user.profile.Bio=form.cleaned_data.get('Bio')
+            user.profile.profile_image=form.cleaned_data.get('profile_image')
+            user.save()
+            raw_password=form.cleaned_data.get('password1')
+            user=authenticate(username=username,password=raw_password)
+            login(request, user)
+
+    else:
+        form=SignUpForm()
+    return render (request,'signup.html',{'form':form})
+@login_required(login_url='/accounts/login')
+def home(request):
+    title='Welcome to Instaphoto'
+    return render(request,'main/home.html',{"title":title})
 @login_required(login_url='/accounts/login')
 def index(request):
     title='Welcome to instagram'
-    profile_info =Profile.objects.all()
+    profile_info =UserProfile.objects.all()
     images_prof=Image.objects.all()
     return render(request,'main/index.html',{"title":title,"profile_info":profile_info,"images_prof":images_prof})
-def first_profile(request):
-    current_user=request.user
-    user=Profile.objects.get(user_id=current_user)
-    if request.method == 'POST':
-        form =ProfileForm(request.POST,request.FILES,instance=user)
-        if form.is_valid():
-            first_profile=form.save(commit=False)
-            first_profile.user=current_user
-            first_profile.save()
-            return redirect(index)
-    else:
-        form = ProfileForm()
+@login_required
+def first_profile(request,profile_id):
+    try:
+        profile_info =Profile.objects.get(id=profile_id)
+    except DoesNotExsist:
+        raise Http404()
 
+    return render(request,'main/profile.html',{"profile_info":profile_info})
 
-    return render(request,'main/profile.html',{"form":form})
 def add_image(request):
    current_profile=Profile.objects.get(user=request.user)
    if request.method == 'POST':
@@ -44,10 +62,11 @@ def details(request,image_id):
     except DoesNotExsist:
         raise Http404()
     return render(request,'main/details.html',{"image_details":image_details})
-def home(request):
-    title='Welcome to Instaphoto'
-    return render(request,'main/home.html',{"title":title})
+
 def search_profile(request):
     search_term=request.GET.get("profile")
     searched_profiles=Profile.search(search_term)
     return render (request,'main/search.html',{"searched_profiles":searched_profiles})
+def second_profile(request):
+    profile_details=Profile.objects.all()
+    return render(request,'main/home.html',{"profile_info":profile_info})

@@ -1,0 +1,26 @@
+{%extends 'main/base.html'%}
+{% load bootstrap3 %}
+{% load static %}
+
+{% block styles %}
+{{ block.super }}
+{% bootstrap_css %}
+<link rel="stylesheet" href="{% static 'css/index.css'%}">
+{% endblock %}
+
+{% block content  %}
+<div class="container">
+
+<h2>Sign up</h2>
+  <form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit">Sign up</button>
+  </form>
+  <a class='btn btn-default' href="/accounts/login">Login</a>
+</div>
+{% endblock %}
+{% block scripts %}
+          <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+       {% bootstrap_javascript %}
+      {% endblock %}

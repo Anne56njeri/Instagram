@@ -7,16 +7,20 @@
 {% endblock %}
 {% block content %}
 <div class="container">
-<h1>Create Profile</h1>
-
- <form  action="{%url 'Profile'%}" method="post" enctype="multipart/form-data">
-    {%csrf_token%}
-
-    {% bootstrap_form form%}
-    <input type="submit" class="btn btn-success btn-lg" value="Post">
-  </form>
 
 
-</div>
+
+
+    <h3>{{profile_info.name}}</h3>
+      <img src="{{profile_info.profile_image.url}}" class="img-responsive"style="width:20% ;height:20%; border-radius:50%;" alt="Image">
+      <br>
+        <p >{{profile_info.Bio}}</p>
+        <hr>
+    </div>
+
+
+
+
+
 
 {%endblock%}

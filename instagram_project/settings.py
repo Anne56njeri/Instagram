@@ -79,7 +79,7 @@ WSGI_APPLICATION = 'instagram_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'instagram',
+        'NAME':'instagram1',
         'USER':'maryanne',
         'PASSWORD':'1234@5'
     }
@@ -126,3 +126,4 @@ STATIC_URL = '/static/'
 #this is allows us to define a special route will display our images
 MEDIA_URL='/media/'
 MEDIA_ROOT=os.path.join(BASE_DIR,'media')
+LOGIN_REDIRECT_URL='/'
