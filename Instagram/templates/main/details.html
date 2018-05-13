@@ -12,11 +12,17 @@
   <div class="row">
 
     <div class="col-md-8">
-      <img src="{{image_details.image_path.url}}" class="img-thumbnail" alt="">
-    </div>
+
+      <img src="{{image_details.image_path.url}}" class="" alt="">
+
+        <h4><a href="{%url 'Comment' image_details.id %}">Add comment</a></h4>
+
+
+  </div>
     <div class="col-md-4">
       <h3 class="text-center">{{image_details.name}}</h3>
       <p class="text-center">{{image_details.image_caption}}</p>
+      <p class="text-center">{{comment.comment}}</p>
     </div>
   </div>
 </div>

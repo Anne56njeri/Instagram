@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth.decorators import login_required
-from .forms import ProfileForm,ImageForm,SignUpForm,UserForm
-from .models import Profile,Image
+from .forms import ProfileForm,ImageForm,SignUpForm,UserForm,CommentForm
+from .models import Profile,Image,Comment
 from django.http import Http404
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
@@ -64,11 +64,14 @@ def add_image(request):
 
    return render(request,'main/image.html',{"form":form})
 def details(request,image_id):
+    current_image=Image.objects.get(id=image_id)
     try:
         image_details = Image.objects.get(id=image_id)
     except DoesNotExsist:
         raise Http404()
-    return render(request,'main/details.html',{"image_details":image_details})
+    comment=Comment.objects.filter(image=current_image)
+
+    return render(request,'main/details.html',{"image_details":image_details,"comment":comment})
 
 def search_profile(request):
     search_term=request.GET.get("profile")
@@ -78,3 +81,19 @@ def nav(request):
     title='Welcome to Instaphoto'
     profile_info=Profile.objects.all()
     return render(request,'navbar1.html',{"title":title,"profile_info":profile_info})
+def comment(request,image_id):
+    current_user= request.user
+    current_image=Image.objects.get(id=image_id)
+
+    if request.method == 'POST':
+        form=CommentForm(request.POST,request.FILES)
+        if form.is_valid():
+            comment_form=form.save(commit=False)
+            comment_form.user=current_user
+            comment_form.image=current_image
+            comment_form.save()
+
+    else:
+            form=CommentForm()
+
+    return render (request ,'main/comment.html',{"form":form,"current_image":current_image})

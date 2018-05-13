@@ -35,6 +35,10 @@ class Image(models.Model):
         self.save()
     def delete_image(self):
         self.delete()
+    @classmethod
+    def get_image(cls):
+        images=Profile.objects.all()
+        return images    
 class Comment (models.Model):
     comment=models.CharField(max_length=50)
     image=models.ForeignKey(Image,null=True)

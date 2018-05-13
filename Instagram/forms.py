@@ -27,3 +27,7 @@ class ImageForm(forms.ModelForm):
     class Meta:
         model=Image
         fields = ['name','image_caption','image_path']
+class CommentForm(forms.ModelForm):
+    class Meta:
+        model=Comment
+        fields = ['comment']
