@@ -26,8 +26,8 @@
 
       {% if image.image_path %}
 
-      <p>{{image.name}}</p>
-      <a href="#" class=""><img src="{{image.image_path.url}}" class="img-thumbnail" ></a>
+
+      <a href="{%url 'Details' image.id%}" class=""><img src="{{image.image_path.url}}" class="img-thumbnail" ></a>
     </div>
 
 

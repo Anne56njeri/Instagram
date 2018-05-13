@@ -35,3 +35,7 @@ class Image(models.Model):
         self.save()
     def delete_image(self):
         self.delete()
+class Comment (models.Model):
+    comment=models.CharField(max_length=50)
+    image=models.ForeignKey(Image,null=True)
+    user=models.ForeignKey(User,null=True)

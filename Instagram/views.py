@@ -57,6 +57,7 @@ def add_image(request):
             image=form.save(commit=False)
             image.profile=profile
             image.save()
+            return redirect(first_profile,profile.id)
 
    else:
         form=ImageForm()
