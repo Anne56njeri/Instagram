@@ -69,9 +69,10 @@ def details(request,image_id):
         image_details = Image.objects.get(id=image_id)
     except DoesNotExsist:
         raise Http404()
-    comment=Comment.objects.filter(image=current_image)
+    
+    comment_details=Comment.objects.filter(image=current_image)
 
-    return render(request,'main/details.html',{"image_details":image_details,"comment":comment})
+    return render(request,'main/details.html',{"image_details":image_details,"comment_details":comment_details})
 
 def search_profile(request):
     search_term=request.GET.get("profile")
