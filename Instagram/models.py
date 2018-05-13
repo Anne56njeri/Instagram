@@ -31,6 +31,7 @@ class Image(models.Model):
     image_caption=models.CharField(max_length=1000,blank=True)
     image_path=models.ImageField(upload_to='images/',blank=True)
     profile=models.ForeignKey(Profile,null=True)
+    likes=models.IntegerField(default=0)
     def save_image(self):
         self.save()
     def delete_image(self):
@@ -38,7 +39,7 @@ class Image(models.Model):
     @classmethod
     def get_image(cls):
         images=Profile.objects.all()
-        return images    
+        return images
 class Comment (models.Model):
     comment=models.CharField(max_length=50)
     image=models.ForeignKey(Image,null=True)

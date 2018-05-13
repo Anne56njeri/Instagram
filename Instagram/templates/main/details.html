@@ -13,17 +13,28 @@
 
     <div class="col-md-8">
 
+
       <img src="{{image_details.image_path.url}}" class="" alt="">
 
+      <br>
+       <div class="row">
+         <div class="col-sm-6">
         <h4><a href="{%url 'Comment' image_details.id %}">Add comment</a></h4>
+        </div>
+        <div class="col-sm-6">
+          <button type="button" class="btn btn-default">
+        <h4><a href="#"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Like</a></h4>
+      </button>
+      </div>
+      </div>
 
+    </div>
 
-  </div>
     <div class="col-md-4">
       <h3 class="text-center">{{image_details.name}}</h3>
       <p class="text-center">{{image_details.image_caption}}</p>
       {%for comment in comment_details %}
-      <div class="alert alert-success" role="alert">
+      <div class="alert alert-success" role="alert" >
       <p class="text-center">{{comment.comment}}</p>
     </div>
       {% endfor %}
