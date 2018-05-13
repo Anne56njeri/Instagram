@@ -12,7 +12,7 @@ url(r'^profile/(\d+)',views.first_profile,name='Profile'),
 url(r'^images/',views.add_image,name='Image'),
 url(r'^details/(\d+)',views.details,name='Details'),
 url(r'^search/',views.search_profile, name='Search'),
-url(r'^profiles/',views.second_profile,name='Profiles')
+url(r'^nav/',views.nav,name='Nav')
 
 ]
 if settings.DEBUG:

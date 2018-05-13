@@ -28,7 +28,7 @@
         <img src="{{profile.profile_image.url}}" class="img-responsive"style="width:35% ;height:35%; border-radius:50%;" alt="Image">
       </div>
       <div class="col-md-8 ">
-          <h1><a href="{%url 'Index'%}">{{profile.name}}</a></h1>
+          <h1><a href="{%url 'Profile' profile.id %}">{{profile.name}}</a></h1>
       </div>
 
     </div>

@@ -1,4 +1,4 @@
-{%extends 'main/baseprofile.html'%}
+{%extends 'main/base.html'%}
 {% load bootstrap3 %}
 {% load static %}
 {% block styles %}
@@ -17,6 +17,31 @@
         <p >{{profile_info.Bio}}</p>
         <hr>
     </div>
+    <div class="container">
+
+
+
+       {%for image in images%}
+       <div class="col-xs-4 col-sm-4 col-lg-4">
+
+      {% if image.image_path %}
+
+      <p>{{image.name}}</p>
+      <a href="#" class=""><img src="{{image.image_path.url}}" class="img-thumbnail" ></a>
+    </div>
+
+
+       {% else %}
+     </div>
+
+       <div class="row">
+       <h3>You haven't uploaded any images</h3>
+       </div>
+     {% endif %}
+     {% endfor %}
+
+
+
 
 
 
