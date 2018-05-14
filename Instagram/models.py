@@ -2,6 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 from django.dispatch import receiver
 from django.db.models.signals import post_save
+from django.core.urlresolvers import reverse
 # Create your models here.
 class Profile(models.Model):
     name=models.CharField(max_length=30)
@@ -13,7 +14,7 @@ class Profile(models.Model):
     def update_user_profile(sender, instance, created, **kwargs):
         if created:
             Profile.objects.create(user=instance)
-        #instance.profile.save()
+        instance.profile.save()
     def save_profile(self):
         self.save()
     def delete_profile(self):
@@ -31,7 +32,7 @@ class Image(models.Model):
     image_caption=models.CharField(max_length=1000,blank=True)
     image_path=models.ImageField(upload_to='images/',blank=True)
     profile=models.ForeignKey(Profile,null=True)
-    likes=models.IntegerField(default=0)
+    likes=models.ManyToManyField(User,related_name='likes' ,blank=True)
     def save_image(self):
         self.save()
     def delete_image(self):
@@ -40,6 +41,8 @@ class Image(models.Model):
     def get_image(cls):
         images=Profile.objects.all()
         return images
+    def get_absolute_url(self):
+        return reverse('like_post', kwargs={'id':self.id})
 class Comment (models.Model):
     comment=models.CharField(max_length=50)
     image=models.ForeignKey(Image,null=True)

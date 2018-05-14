@@ -2,6 +2,7 @@
 {% load bootstrap3 %}
 {% load static %}
 
+
 {% block styles %}
 {{ block.super }}
 {% bootstrap_css %}
@@ -22,9 +23,19 @@
         <h4><a href="{%url 'Comment' image_details.id %}">Add comment</a></h4>
         </div>
         <div class="col-sm-6">
-          <button type="button" class="btn btn-default">
-        <h4><a href="#"><span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span> Like</a></h4>
-      </button>
+
+          <form action="{%url 'like_post' image_details.id%}" method="post">
+            {%csrf_token%}
+            {%if is_liked %}
+
+
+            <button type="submit" name="image_details_id"value="{{image_details.id}}" class="btn btn-primary"><a href="{%url 'like_post' image_details.id%}" style="color:white;">Dislike</a></button>
+            {%else %}
+            <button type="submit" name="image_details_id"value="{{image_details.id}}" class="btn btn-primary"><a href="{%url 'like_post' image_details.id%}" style="color:white;">Like</a></button>
+           {% endif %}
+          </form>
+
+
       </div>
       </div>
 
