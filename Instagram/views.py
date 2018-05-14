@@ -30,7 +30,9 @@ def signup(request):
 @login_required(login_url='/accounts/login')
 def home(request):
     title='Welcome to Instaphoto'
+    current_user=request.user
     profile_info=Profile.objects.all()
+    profile=Profile.objects.get(user=current_user)
     images=Image.objects.all()
     return render(request,'main/home.html',{"title":title,"profile_info":profile_info,"images":images})
 @login_required(login_url='/accounts/login')
@@ -93,10 +95,10 @@ def search_profile(request):
     search_term=request.GET.get("profile")
     searched_profiles=Profile.search(search_term)
     return render (request,'main/search.html',{"searched_profiles":searched_profiles})
-def nav(request):
-    title='Welcome to Instaphoto'
-    profile_info=Profile.objects.all()
-    return render(request,'navbar1.html',{"title":title,"profile_info":profile_info})
+def nav(request,profile_id):
+    title='hello'
+    profile_info=Profile.objects.get(id=profile_id)
+    return render(request,'navbar1.html',{"profile_info":profile_info})
 def comment(request,image_id):
     current_user= request.user
     current_image=Image.objects.get(id=image_id)

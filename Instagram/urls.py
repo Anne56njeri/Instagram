@@ -12,7 +12,7 @@ url(r'^profile/(\d+)',views.first_profile,name='Profile'),
 url(r'^images/',views.add_image,name='Image'),
 url(r'^details/(\d+)',views.details,name='Details'),
 url(r'^search/',views.search_profile, name='Search'),
-url(r'^nav/',views.nav,name='Nav'),
+url(r'^nav/(\d+)',views.nav,name='Nav'),
 url(r'^comments/(\d+)',views.comment,name='Comment'),
 url(r'^likes/(\d+)',views.like_post,name="like_post"),
 
