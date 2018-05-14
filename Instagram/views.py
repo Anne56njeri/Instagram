@@ -31,7 +31,8 @@ def signup(request):
 def home(request):
     title='Welcome to Instaphoto'
     profile_info=Profile.objects.all()
-    return render(request,'main/home.html',{"title":title,"profile_info":profile_info})
+    images=Image.objects.all()
+    return render(request,'main/home.html',{"title":title,"profile_info":profile_info,"images":images})
 @login_required(login_url='/accounts/login')
 def index(request):
     title='Welcome to instagram'
@@ -66,6 +67,10 @@ def add_image(request):
         form=ImageForm()
 
    return render(request,'main/image.html',{"form":form})
+'''
+we set is_liked=false thus it will present the like button but if the exists a user id
+ in the likes then is liked is set to true thus the button presented is dislike
+'''
 def details(request,image_id):
     current_image=Image.objects.get(id=image_id)
     images=Image.objects.get(id=image_id)
@@ -82,7 +87,7 @@ def details(request,image_id):
 
     comment_details=Comment.objects.filter(image=current_image)
 
-    return render(request,'main/details.html',{"image_details":image_details,"comment_details":comment_details,"images":images,"is_liked":is_liked})
+    return render(request,'main/details.html',{"image_details":image_details,"comment_details":comment_details,"images":images,"is_liked":is_liked,"total_likes":images.total_likes()})
 
 def search_profile(request):
     search_term=request.GET.get("profile")
@@ -108,7 +113,11 @@ def comment(request,image_id):
             form=CommentForm()
 
     return render (request ,'main/comment.html',{"form":form,"current_image":current_image})
-
+'''
+we set is_liked to false thus the like button is presented and when clicked they are removed from the db
+ if they exist we remove them from the db
+else we add them and is like is true thus presenting the dislike button
+'''
 def like_post(request,image_id):
     post=Image.objects.get(id=image_id)
     is_liked=False

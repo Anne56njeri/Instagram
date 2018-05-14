@@ -41,8 +41,8 @@ class Image(models.Model):
     def get_image(cls):
         images=Profile.objects.all()
         return images
-    def get_absolute_url(self):
-        return reverse('like_post', kwargs={'id':self.id})
+    def total_likes(self):
+        return self.likes.count()
 class Comment (models.Model):
     comment=models.CharField(max_length=50)
     image=models.ForeignKey(Image,null=True)

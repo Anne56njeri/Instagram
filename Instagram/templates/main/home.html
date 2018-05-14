@@ -9,6 +9,25 @@
 {% endblock %}
 {% block content %}
 <h1>Hello</h1>
+<div class="container">
+
+
+  <div class="row">
+  {%for image in images%}
+  <div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+<img src="{{image.image_path.url}}" class="img-thumbnail"alt="Image">
+
+</div>
+{% endfor %}
+
+</div>
+
+
+
+
+</div>
+
+
 
 
 

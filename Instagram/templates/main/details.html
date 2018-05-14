@@ -23,12 +23,12 @@
         <h4><a href="{%url 'Comment' image_details.id %}">Add comment</a></h4>
         </div>
         <div class="col-sm-6">
-
+          {{total_likes}} Like
+        <!--if is liked is true then the dislike button is presented and the user is
+      ommitted from the db and the is_liked is set to false-->
           <form action="{%url 'like_post' image_details.id%}" method="post">
             {%csrf_token%}
             {%if is_liked %}
-
-
             <button type="submit" name="image_details_id"value="{{image_details.id}}" class="btn btn-primary"><a href="{%url 'like_post' image_details.id%}" style="color:white;">Dislike</a></button>
             {%else %}
             <button type="submit" name="image_details_id"value="{{image_details.id}}" class="btn btn-primary"><a href="{%url 'like_post' image_details.id%}" style="color:white;">Like</a></button>
