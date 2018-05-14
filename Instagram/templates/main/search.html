@@ -23,6 +23,7 @@
 
   {% if searched_profiles %}
     {% for profile in searched_profiles %}
+    <div class="alert alert-info" role="alert">
     <div class="row">
       <div class="col-md-4">
         <img src="{{profile.profile_image.url}}" class="img-responsive"style="width:35% ;height:35%; border-radius:50%;" alt="Image">
@@ -32,10 +33,11 @@
       </div>
 
     </div>
+    </div>
     {% endfor %}
   {% endif %}
 
-</div>
+
 
 
 {% endblock %}

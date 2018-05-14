@@ -7,7 +7,7 @@ from . import views as core_views
 urlpatterns=[
 url(r'^signup/',core_views.signup,name='signup'),
 url(r'^$',views.home,name='Home',),
-url(r'^index/',views.index,name='Index'),
+url(r'^timeline/',views.index,name='Index'),
 url(r'^profile/(\d+)',views.first_profile,name='Profile'),
 url(r'^images/',views.add_image,name='Image'),
 url(r'^details/(\d+)',views.details,name='Details'),
