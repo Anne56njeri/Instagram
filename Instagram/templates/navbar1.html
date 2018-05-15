@@ -4,19 +4,23 @@
 
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
+<link href="https://fonts.googleapis.com/css?family=Lobster" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 </head>
 <body>
+
 <nav class="navbar navbar-default">
   <div class="container-fluid">
+
     <div class="navbar-header">
 
 
-    <a class="navbar-brand" href="{% url 'Index' %}">Instaphoto</a>
+  <a class="navbar-brand" href="{% url 'Index' %}" style="font-family: 'Lobster', cursive; font-size:35px"><i class="fa fa-camera-retro" style="font-size:40px;color:purple;"></i>  Instaphoto</a>
 
     </div>
     <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
        <ul class="nav navbar-nav">
-         <li class="active"><a href="{%url 'Profile' user.id %}"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> View profile<span class="sr-only">(current)</span></a></li>
+         <li class="active"><a href="{%url 'Profile' user.id %}" style="font-family: 'Lobster', cursive; font-size:20px"><span class="glyphicon glyphicon-user" aria-hidden="true"></span> View profile<span class="sr-only">(current)</span></a></li>
        </ul>
 
 

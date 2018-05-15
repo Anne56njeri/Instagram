@@ -11,7 +11,7 @@ class Profile(models.Model):
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     follow=models.ManyToManyField(User,related_name='who_following',blank=True)
 
-    
+
 
     @receiver(post_save, sender=User)
     def update_user_profile(sender, instance, created, **kwargs):
@@ -40,6 +40,10 @@ class Image(models.Model):
         self.save()
     def delete_image(self):
         self.delete()
+    @classmethod
+    def get_id(cls):
+        prof=Image.objects.all()
+        return prof
     @classmethod
     def get_image(cls):
         images=Profile.objects.all()

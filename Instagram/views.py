@@ -35,6 +35,8 @@ def home(request):
     profile_info=Profile.objects.all()
     profile=Profile.objects.get(user=current_user)
     images=Image.objects.all()
+
+
     return render(request,'main/home.html',{"title":title,"profile_info":profile_info,"images":images})
 @login_required(login_url='/accounts/login')
 def index(request):
@@ -134,9 +136,10 @@ def like_post(request,image_id):
         is_liked=True
     return redirect(details,post.id)
 def follow(request,user_id):
-    
+
     follows=Profile.objects.get(id=user_id)
     print(follows)
     follows.follow.add(request.user)
+
     print(follows.follow.all())
     return redirect(home)
