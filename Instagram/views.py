@@ -81,6 +81,8 @@ we set is_liked=false thus it will present the like button but if the exists a u
 def details(request,image_id):
     current_image=Image.objects.get(id=image_id)
     images=Image.objects.get(id=image_id)
+
+
     is_liked=False
     if images.likes.filter(id=request.user.id).exists():
         is_liked = True
@@ -90,11 +92,11 @@ def details(request,image_id):
     except DoesNotExsist:
         raise Http404()
 
-
+    images_profile=Image.objects.filter(id=image_id)
 
     comment_details=Comment.objects.filter(image=current_image)
 
-    return render(request,'main/details.html',{"image_details":image_details,"comment_details":comment_details,"images":images,"is_liked":is_liked,"total_likes":images.total_likes()})
+    return render(request,'main/details.html',{"image_details":image_details,"comment_details":comment_details,"images":images,"is_liked":is_liked,"total_likes":images.total_likes(),"images_profile":images_profile})
 
 def search_profile(request):
     search_term=request.GET.get("profile")
