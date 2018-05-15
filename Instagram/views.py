@@ -56,21 +56,22 @@ def first_profile(request,profile_id):
     return render(request,'main/profile.html',{"profile_info":profile_info,"images":images,"current_id":current_id})
 
 def add_image(request):
+    current_user=request.user
+    profiles=Profile.get_profile()
+    for profile in profiles:
+        form=ImageForm(request.POST,request.FILES)
+        profile_instance=Profile.objects.get(id=request.user.id)
+        if request.method == 'POST':
+            if form.is_valid():
+                image=form.save(commit=False)
+                image.profile=profile_instance
+                image.save()
+                return redirect(first_profile,request.user.id)
 
-   profiles=Profile.get_profile()
-   for profile in profiles:
-       form=ImageForm(request.POST,request.FILES)
-       if request.method == 'POST':
-           if form.is_valid():
-            image=form.save(commit=False)
-            image.profile=profile
-            image.save()
-            return redirect(first_profile,profile.id)
+        else:
+            form=ImageForm()
 
-   else:
-        form=ImageForm()
-
-   return render(request,'main/image.html',{"form":form})
+    return render(request,'main/image.html',{"form":form})
 '''
 we set is_liked=false thus it will present the like button but if the exists a user id
  in the likes then is liked is set to true thus the button presented is dislike
