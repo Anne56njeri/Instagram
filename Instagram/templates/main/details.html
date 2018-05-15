@@ -6,42 +6,49 @@
 {% block styles %}
 {{ block.super }}
 {% bootstrap_css %}
-<link rel="stylesheet" href="{% static 'css/index.css'%}">
+<link rel="stylesheet" href="{% static 'css/details.css'%}">
 {% endblock %}
 {% block content %}
 <div class="container">
   <div class="row">
 
     <div class="col-md-8">
-
+      <div class="card">
 
       <img src="{{image_details.image_path.url}}" class="" alt="">
 
-      <br>
-       <div class="row">
-         <div class="col-sm-6">
+
+
+       <!--div class="row"-->
+         <!--div class="col-sm-6"-->
+        <div class="center">
         <h4><a href="{%url 'Comment' image_details.id %}">Add comment</a></h4>
-        </div>
-        <div class="col-sm-6">
+        <!--/div-->
+        <!--div class="col-sm-6"-->
           {{total_likes}} Like
         <!--if is liked is true then the dislike button is presented and the user is
       ommitted from the db and the is_liked is set to false-->
-          <form action="{%url 'like_post' image_details.id%}" method="post">
-            {%csrf_token%}
+
+
             {%if is_liked %}
             <button type="submit" name="image_details_id"value="{{image_details.id}}" class="btn btn-primary"><a href="{%url 'like_post' image_details.id%}" style="color:white;">Dislike</a></button>
             {%else %}
             <button type="submit" name="image_details_id"value="{{image_details.id}}" class="btn btn-primary"><a href="{%url 'like_post' image_details.id%}" style="color:white;">Like</a></button>
            {% endif %}
-          </form>
 
 
-      </div>
-      </div>
-
+        
+      <!--/div-->
     </div>
 
+</div>
+    </div>
+
+
+
+
     <div class="col-md-4">
+      <div class="card">
       <h3 class="text-center">{{image_details.name}}</h3>
       <p class="text-center">{{image_details.image_caption}}</p>
       {%for comment in comment_details %}
@@ -51,6 +58,7 @@
       {% endfor %}
     </div>
   </div>
+</div>
 </div>
 {% endblock %}
 
