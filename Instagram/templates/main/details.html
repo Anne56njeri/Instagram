@@ -6,6 +6,7 @@
 {% block styles %}
 {{ block.super }}
 {% bootstrap_css %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="{% static 'css/details.css'%}">
 {% endblock %}
 {% block content %}
@@ -15,7 +16,7 @@
     <div class="col-md-8">
       <div class="card">
 
-      <img src="{{image_details.image_path.url}}" class="" alt="">
+      <img src="{{image_details.image_path.url}}" class="" alt="" style="width:100%">
 
 
 
@@ -31,13 +32,13 @@
 
 
             {%if is_liked %}
-            <button type="submit" name="image_details_id"value="{{image_details.id}}" class="btn btn-primary"><a href="{%url 'like_post' image_details.id%}" style="color:white;">Dislike</a></button>
+            <!--button type="submit" name="image_details_id"value="{{image_details.id}}" class=""--><a href="{%url 'like_post' image_details.id%}" style="color:white;"><i class="fa fa-heart" style="font-size:48px;color:red"></i></a><!--/button-->
             {%else %}
-            <button type="submit" name="image_details_id"value="{{image_details.id}}" class="btn btn-primary"><a href="{%url 'like_post' image_details.id%}" style="color:white;">Like</a></button>
+            <!--button type="submit" name="image_details_id"value="{{image_details.id}}" class="btn btn-primary"--><a href="{%url 'like_post' image_details.id%}" style="color:black;"><i class="fa fa-heart-o" style="font-size:36px;"></i></a><!--/button-->
            {% endif %}
 
 
-        
+
       <!--/div-->
     </div>
 
@@ -48,8 +49,8 @@
 
 
     <div class="col-md-4">
-      <div class="card">
-      <h3 class="text-center">{{image_details.name}}</h3>
+      <div class="card" >
+      <h3 class="text-center"style="width:100%;">{{image_details.name}}</h3>
       <p class="text-center">{{image_details.image_caption}}</p>
       {%for comment in comment_details %}
       <div class="alert alert-success" role="alert" >
