@@ -134,7 +134,7 @@ def like_post(request,image_id):
         is_liked=True
     return redirect(details,post.id)
 def follow(request,user_id):
-
+    
     follows=Profile.objects.get(id=user_id)
     print(follows)
     follows.follow.add(request.user)
