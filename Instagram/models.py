@@ -9,6 +9,9 @@ class Profile(models.Model):
     Bio= models.TextField()
     profile_image=models.ImageField(upload_to = 'profiles/',blank=True)
     user=models.OneToOneField(User,on_delete=models.CASCADE)
+    follow=models.ManyToManyField(User,related_name='who_following',blank=True)
+
+    
 
     @receiver(post_save, sender=User)
     def update_user_profile(sender, instance, created, **kwargs):
@@ -47,3 +50,5 @@ class Comment (models.Model):
     comment=models.CharField(max_length=50)
     image=models.ForeignKey(Image,null=True)
     user=models.ForeignKey(User,null=True)
+
+#Add the following field to User dynamically

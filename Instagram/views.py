@@ -6,6 +6,7 @@ from django.http import Http404,HttpResponseRedirect
 from django.contrib.auth.forms import UserCreationForm
 from django.db import transaction
 from django.contrib.auth import login,authenticate
+from django.contrib.auth.models import User
 # Create your views here.
 def signup(request):
     if request.method == 'POST':
@@ -43,6 +44,7 @@ def index(request):
     return render(request,'main/index.html',{"title":title})
 @login_required
 def first_profile(request,profile_id):
+    current_id=request.user.id
     current_profile=Profile.objects.get(id=profile_id)
     try:
         profile_info =Profile.objects.get(id=profile_id)
@@ -51,7 +53,7 @@ def first_profile(request,profile_id):
 
     images =Image.objects.filter(profile=current_profile)
 
-    return render(request,'main/profile.html',{"profile_info":profile_info,"images":images})
+    return render(request,'main/profile.html',{"profile_info":profile_info,"images":images,"current_id":current_id})
 
 def add_image(request):
 
@@ -130,3 +132,10 @@ def like_post(request,image_id):
         post.likes.add(request.user)
         is_liked=True
     return redirect(details,post.id)
+def follow(request,user_id):
+
+    follows=Profile.objects.get(id=user_id)
+    print(follows)
+    follows.follow.add(request.user)
+    print(follows.follow.all())
+    return redirect(home)

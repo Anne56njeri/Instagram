@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'Instagram.apps.InstagramConfig',
     'bootstrap3',
-    
+
 ]
 
 MIDDLEWARE = [
@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'instagram_project.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME':'instagram1',
+        'NAME':'instagram2',
         'USER':'maryanne',
         'PASSWORD':'1234@5'
     }

@@ -15,6 +15,7 @@ url(r'^search/',views.search_profile, name='Search'),
 url(r'^nav/(\d+)',views.nav,name='Nav'),
 url(r'^comments/(\d+)',views.comment,name='Comment'),
 url(r'^likes/(\d+)',views.like_post,name="like_post"),
+url(r'^follow/(\d+)',views.follow,name="Follow"),
 
 
 ]
