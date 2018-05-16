@@ -31,6 +31,8 @@ class Profile(models.Model):
     def get_profile(cls):
         profile=Profile.objects.all()
         return profile
+    def total_following(self):
+        return self.follow.count()
 class Image(models.Model):
     name=models.CharField(max_length=20)
     image_caption=models.CharField(max_length=1000,blank=True)

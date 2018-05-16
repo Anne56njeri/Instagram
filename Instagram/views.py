@@ -59,8 +59,9 @@ def first_profile(request,profile_id):
     if follows.follow.filter(id=profile_id).exists():
         is_follow=True
 
-
-    return render(request,'main/profile.html',{"profile_info":profile_info,"images":images,"current_id":current_id,"is_follow":is_follow})
+    following=follows.follow.all()
+    followers=follows.user.who_following.all()
+    return render(request,'main/profile.html',{"profile_info":profile_info,"images":images,"current_id":current_id,"is_follow":is_follow,"total_following":follows.total_following(),"following":following,"followers":followers})
 
 def add_image(request):
     current_user=request.user
@@ -153,12 +154,15 @@ def follow(request,user_id):
         is_follow=False
     else:
         follows.follow.add(user1)
-        is_follow=False
+        is_follow=True
 
     print(follows)
 
     print(user1)
 
+# Who am following
+    print(follows.follow.all())
+# Who is following me
+    print(follows.user.who_following.all())
 
-    #print(follows.follow.all())
     return redirect(first_profile ,user1.id)
