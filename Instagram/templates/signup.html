@@ -5,19 +5,25 @@
 {% block styles %}
 {{ block.super }}
 {% bootstrap_css %}
-<link rel="stylesheet" href="{% static 'css/index.css'%}">
+<link rel="stylesheet" href="{% static 'css/signup.css'%}">
+
 {% endblock %}
 
 {% block content  %}
-<div class="container">
 
-<h2>Sign up</h2>
-  <form method="post" enctype="multipart/form-data">
+<div class="container">
+<div class="car">
+
+<h2 style="">Sign up</h2>
+  <form method="post" class="form-horizontal" enctype="multipart/form-data">
     {% csrf_token %}
-    {{  form.as_p }}
-    <button type="submit">Sign up</button>
+    {% bootstrap_form form%}
   </form>
+    <div class="bottom">
+    <button type="submit">Sign up</button>
+  </div>
   <a class='btn btn-default' href="/accounts/login">Login</a>
+</div>
 </div>
 {% endblock %}
 {% block scripts %}
