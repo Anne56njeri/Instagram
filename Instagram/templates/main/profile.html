@@ -14,6 +14,11 @@
       <br>
         <p >{{profile_info.Bio}}</p>
 
+      {%if is_follow %}
+      <button type="submit"name=""class="btn btn-info"><a href="{%url 'Follow' profile_info.id %}" style="color:white;">Unfollow</a></button>
+      {% else %}
+      <button type="submit"name=""class="btn btn-info"><a href="{%url 'Follow' profile_info.id %}" style="color:white;">Follow</a></button>
+     {% endif %}
     </div>
 
   <div class="col-sm-4">
@@ -23,10 +28,8 @@
         <h3>{{ images|length }}</h3>
       </div>
       <div class="col-xs-4">
-        <form action="{%url 'Follow' profile_info.id%}" method="post">
-          {% csrf_token %}
-        <button type="submit"name=""><h3><a href="{%url 'Follow' profile_info.id %}">Follow</a></h3></button>
-      </form>
+        <h3>Following</h3>
+          <h3>0</h3>
       </div>
 
       <div class="col-xs-4">

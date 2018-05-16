@@ -10,7 +10,8 @@ class Profile(models.Model):
     profile_image=models.ImageField(upload_to = 'profiles/',blank=True)
     user=models.OneToOneField(User,on_delete=models.CASCADE)
     follow=models.ManyToManyField(User,related_name='who_following',blank=True)
-
+    def __str__(self):
+        return self.name
 
 
     @receiver(post_save, sender=User)
@@ -56,3 +57,6 @@ class Comment (models.Model):
     user=models.ForeignKey(User,null=True)
 
 #Add the following field to User dynamically
+def get_first_name(self):
+    return self.first_name
+User.add_to_class("__str__", get_first_name)

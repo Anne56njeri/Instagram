@@ -54,8 +54,13 @@ def first_profile(request,profile_id):
         raise Http404()
 
     images =Image.objects.filter(profile=current_profile)
+    follows=Profile.objects.get(id=request.user.id)
+    is_follow=False
+    if follows.follow.filter(id=profile_id).exists():
+        is_follow=True
 
-    return render(request,'main/profile.html',{"profile_info":profile_info,"images":images,"current_id":current_id})
+
+    return render(request,'main/profile.html',{"profile_info":profile_info,"images":images,"current_id":current_id,"is_follow":is_follow})
 
 def add_image(request):
     current_user=request.user
@@ -139,9 +144,21 @@ def like_post(request,image_id):
     return redirect(details,post.id)
 def follow(request,user_id):
 
-    follows=Profile.objects.get(id=user_id)
-    print(follows)
-    follows.follow.add(request.user)
+    follows=Profile.objects.get(id=request.user.id)
+    user1=User.objects.get(id=user_id)
+    #user=Profile.objects.get(id=user_id)
+    is_follow=False
+    if follows.follow.filter(id=user_id).exists():
+        follows.follow.remove(user1)
+        is_follow=False
+    else:
+        follows.follow.add(user1)
+        is_follow=False
 
-    print(follows.follow.all())
-    return redirect(home)
+    print(follows)
+
+    print(user1)
+
+
+    #print(follows.follow.all())
+    return redirect(first_profile ,user1.id)
