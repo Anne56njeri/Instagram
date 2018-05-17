@@ -22,3 +22,14 @@ padding: 2px 16px;
 padding: 2px 16px;
 
 }
+.row-flex {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+
+/* vertical spacing between columns */
+
+[class*="col-"] {
+  margin-bottom: 30px;
+}

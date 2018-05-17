@@ -3,7 +3,7 @@
 {% load static %}
 {% block styles %}
 {% bootstrap_css %}
-<link rel="stylesheet" href="{% static 'css/profile.css'%}">
+<link rel="stylesheet" href="{% static 'css/details.css'%}">
 {% endblock %}
 {% block content %}
 <div class="container">
@@ -52,19 +52,22 @@
     <div class="container">
 
 
-
+      
+      <div class="row row-flex">
        {%for image in images%}
-       <div class="col-xs-4 col-sm-4 col-lg-4">
+       <div class="col-md-4 col-sm-6 col-xs-12">
 
       {% if image.image_path %}
 
-
-      <a href="{%url 'Details' image.id%}" class=""><img src="{{image.image_path.url}}" class="img-thumbnail" ></a>
+      <a href="{%url 'Details' image.id%}" class=""><img src="{{image.image_path.url}}" class="img-responsive" ></a>
     </div>
 
 
        {% else %}
+
+
      </div>
+   </div>
 
        <div class="row">
        <h3>You haven't uploaded any images</h3>
