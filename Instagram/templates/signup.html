@@ -12,16 +12,20 @@
 {% block content  %}
 
 <div class="container">
-<div class="car">
-
-<h2 style="">Sign up</h2>
-  <form method="post" class="form-horizontal" enctype="multipart/form-data">
+  <div class="panel panel-default">
+<div class="panel-heading" style="background-color:orange;">
+<h2 class="text-center"style="color:white;">Sign up</h2>
+</div>
+  <div class="panel-body">
+  <form method="post" class="" enctype="multipart/form-data">
     {% csrf_token %}
     {% bootstrap_form form%}
   </form>
+</div>
     <div class="bottom">
-    <button type="submit">Sign up</button>
+    <button type="submit" class="btn btn-warning">Sign up</button>
   </div>
+</div>
   <a class='btn btn-default' href="/accounts/login">Login</a>
 </div>
 </div>

@@ -10,14 +10,14 @@
 <div class="row">
   <div class="col-sm-8">
     <h3>{{profile_info.name}}</h3>
-      <img src="{{profile_info.profile_image.url}}" class="img-responsive"style="width:20% ;height:20%; border-radius:50%;" alt="Image">
+      <img src="{{profile_info.profile_image.url}}" class="img-circle"style="width:35%;height:35%;" alt="Image">
       <br>
         <p >{{profile_info.Bio}}</p>
 
       {%if is_follow %}
-      <button type="submit"name=""class="btn btn-info"><a href="{%url 'Follow' profile_info.id %}" style="color:white;">Unfollow</a></button>
+      <button type="submit"name=""class="btn btn-warning"><a href="{%url 'Follow' profile_info.id %}" style="color:white;">Unfollow</a></button>
       {% else %}
-      <button type="submit"name=""class="btn btn-info"><a href="{%url 'Follow' profile_info.id %}" style="color:white;">Follow</a></button>
+      <button type="submit"name=""class="btn btn-warning "><a href="{%url 'Follow' profile_info.id %}" style="color:white;">Follow</a></button>
      {% endif %}
     </div>
 
@@ -25,17 +25,22 @@
     <div class="row">
       <div class="col-xs-4">
         <h3>Post</h3>
-        <h3>{{ images|length }}</h3>
+        <h4 ><span class="badge"style=" background-color:orange;font-size:27px;">{{ images|length}} </span></h4>
       </div>
       <div class="col-xs-4">
         <h3>Following</h3>
-          <h3>{{following|length}}</h3>
+          <h4><span class="badge"style=" background-color:orange;font-size:27px;">{{following|length}}</span></h4>
       </div>
 
       <div class="col-xs-4">
         <h3>Followers</h3>
-        <h3>{{followers|length}}</h3>
+        <h4><span class="badge"style=" background-color:orange;font-size:27px;">{{followers|length}}</span></h4>
       </div>
+      <nav aria-label="...">
+      <ul class="pager">
+      <li class="previous"><a href="#"><p class="text-center" style="color:orange;width:280px;">Edit Profile</p></a></li>
+    </ul>
+  </nav>
 
   </div>
 

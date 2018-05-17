@@ -12,14 +12,14 @@
 {% block content %}
 <div class="container">
   <div class="row">
-
+ <h1>hello</h1>
     <div class="col-md-8">
       <div class="card">
       <div class="top">
 
         {%for img in images_profile%}
         <img src="{{img.profile.profile_image.url}}"style="width:15% ;height:15%; border-radius:50%">
-      <h3 style="float:right;"><a href="{%url 'Profile' img.profile.id %}">  {{img.profile.name}}</a></h3>
+      <h3 style="float:right; color:orange;"><a href="{%url 'Profile' img.profile.id %}"style="color:orange;">  {{img.profile.name}}</a></h3>
         {% endfor %}
       </div>
       <img src="{{image_details.image_path.url}}" class="" alt="" style="width:100%">
@@ -29,10 +29,10 @@
        <!--div class="row"-->
          <!--div class="col-sm-6"-->
         <div class="center">
-        <h4><a href="{%url 'Comment' image_details.id %}"><i class="fa fa-comments-o" style="font-size:40px"></i>Add comment</a></h4>
+        <h4><a href="{%url 'Comment' image_details.id %}"style="color:orange;"><i class="fa fa-comments-o" style="font-size:40px; color:orange;"></i>Add comment</a></h4>
         <!--/div-->
         <!--div class="col-sm-6"-->
-          {{total_likes}} Like
+          <h4 style="color:orange;">{{total_likes}} Likes</h4>
         <!--if is liked is true then the dislike button is presented and the user is
       ommitted from the db and the is_liked is set to false-->
 
@@ -56,8 +56,8 @@
 
     <div class="col-md-4">
       <div class="card" >
-      <h3 class="text-center"style="width:100%;">{{image_details.name}}</h3>
-      <p class="text-center">{{image_details.image_caption}}</p>
+      <h3 class="text-center"style="width:100%;color:orange;">{{image_details.name}}</h3>
+      <p class="text-center" style="color:orange;">{{image_details.image_caption}}</p>
 
       {%for comment in comment_details %}
       <div class="alert alert-info" role="alert" >
