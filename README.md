@@ -1,9 +1,21 @@
-## instaphoto
-An app bulid using Django a python framework
+## Instaphoto
+An app bulid using Django a python framework  
 
+- Home page
+![Screenshot](screenshot1.png)
+
+- Profile Page
+![Screenshot](screenshot2.png)
+
+- Image Page
+![Screenshot](screenshot4.png)
 
 ## Author name
-Maryanne Njeri
+Maryanne  Njeri
+
+## Project Description
+Instaphoto  is an app build with python version 3.6 ,its an app that allows you to get an account upload images in your
+account follow other users on instaphoto  like their photos comment on their photos
 
 
 
@@ -27,7 +39,7 @@ https://www.youtube.com/watch?v=eP_y8SpS3KA&feature=youtu.be
 - Bootstrap 3
 - HTML5/CSS
 - postgresql
-- JavaScript
+
 
 
 
