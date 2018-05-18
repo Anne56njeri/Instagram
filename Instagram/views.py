@@ -20,10 +20,11 @@ def signup(request):
 
             user.profile.profile_image=form.cleaned_data.get('profile_image')
             user.save()
-
             raw_password=form.cleaned_data.get('password1')
             user=authenticate(username=user.username,password=raw_password)
+            return redirect (home)
             login(request, user)
+            return redirect (home)
 
     else:
         form=SignUpForm()

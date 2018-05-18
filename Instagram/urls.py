@@ -2,10 +2,10 @@ from django.conf.urls import url,include
 from .import views
 from django.conf import settings
 from django.conf.urls.static import static
-from . import views as core_views
+
 
 urlpatterns=[
-url(r'^signup/',core_views.signup,name='signup'),
+url(r'^signup/',views.signup,name='signup'),
 url(r'^$',views.home,name='Home',),
 url(r'^timeline/',views.index,name='Index'),
 url(r'^profile/(\d+)',views.first_profile,name='Profile'),

@@ -59,6 +59,3 @@ class Comment (models.Model):
     user=models.ForeignKey(User,null=True)
 
 #Add the following field to User dynamically
-def get_first_name(self):
-    return self.first_name
-User.add_to_class("__str__", get_first_name)
